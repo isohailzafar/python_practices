@@ -1,53 +1,49 @@
 #Multiple Inheritance
-#Polymorphism
+#Create two classes Battery and Engine, and let the ElectricCar class inherit from both, demonstrating multiple inheritance.
 
 class Car:
-    total_car = 0
-
+    track = 0
     def __init__(self, brand, model):
         self.__brand = brand
         self.__model = model
-        Car.total_car += 1
+        Car.track +=  1
 
+    def full_name(self):
+        return f"{self.__brand} {self.__model}"
+    
     def get_brand(self):
         return self.__brand
     
-    def fullname(self):
-        return f"{self.__brand} {self.__model}"
-    
     def fuel_type(self):
-        return "Petrol Diesel"
+        return "Petrol or Diesel"
     
-    @staticmethod #This is a decorator
-    def general_definition():
-        return "Cars are means of transport"
-    @property
+    @staticmethod
+    def general_description():
+        return "Cars are beautiful"
+    
+    @property 
     def model(self):
-        return self.__model
-
+        return self.__brand
+class Engine:
+    def engine_info(self):
+        return "Petrol"
+class Battery:
+    def battery_size(self):
+        return "Dry battery"
+    
 class ElectricCar(Car):
-    def __init__(self, brand, model, batterysize):
+    def __init__(self, brand, model, battery_size):
         super().__init__(brand, model)
-        self.batterysize = batterysize
+        self.battery_size = battery_size
     
     def fuel_type(self):
         return "Electric Charge"
-    
-my_car = Car("Corolla", "Safari")
-print(isinstance(my_car, ElectricCar))
-
-class Battery:
-    def battery_info(self):
-        return "This is battery"
-class Engine:
-    def engine_info(self):
-        return "This is engine"
-    
-class Ecar(Battery, Engine, Car):
+class ElectricCartwo(Engine, Battery, Car):
     pass
-
-my_new_tesla = Ecar("Tesla", "X")
-
-print(my_new_tesla.engine_info())
+my_tesla = ElectricCartwo("Tesla", "Model S")
+print(my_tesla.battery_size())
+print(my_tesla.engine_info())
+print(my_tesla.model)
+print(my_tesla.full_name())
 
 

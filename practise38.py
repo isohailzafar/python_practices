@@ -1,39 +1,38 @@
-#Polymorphism
+#Property Decorators
+#Problem: Use a property decorator in the Car class to make the model attribute read-only.
 
 class Car:
-    total_car = 0
-
+    track = 0
     def __init__(self, brand, model):
         self.__brand = brand
         self.__model = model
-        Car.total_car += 1
+        Car.track +=  1
 
+    def full_name(self):
+        return f"{self.__brand} {self.__model} {self.battery_size}"
+    
     def get_brand(self):
         return self.__brand
     
-    def fullname(self):
-        return f"{self.__brand} {self.__model}"
-    
     def fuel_type(self):
-        return "Petrol Diesel"
+        return "Petrol or Diesel"
     
-    @staticmethod #This is a decorator
-    def general_definition():
-        return "Cars are means of transport"
-    @property
+    @staticmethod
+    def general_description():
+        return "Cars are beautiful"
+    
+    @property 
     def model(self):
-        return self.__model
+        return self.__brand
 
 class ElectricCar(Car):
-    def __init__(self, brand, model, batterysize):
+    def __init__(self, brand, model, battery_size):
         super().__init__(brand, model)
-        self.batterysize = batterysize
+        self.battery_size = battery_size
     
     def fuel_type(self):
         return "Electric Charge"
-    
-my_car = Car("Corolla", "Safari")
-# my_car.model = "X"
-print(my_car.model())
 
 
+my_car = Car("Tata", "Safari")
+print(my_car.model)
